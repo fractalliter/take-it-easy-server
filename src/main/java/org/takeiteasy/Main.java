@@ -14,11 +14,12 @@ public class Main {
         try{
             Properties props = new Properties();
             props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(APPLICATION_PROPERTIES));
+            String serverPort = props.getProperty("server-port");
             ExecutorService executor = Executors.newFixedThreadPool(
                     Integer.parseInt(props.getProperty("thread-pool-size"))
             );
             var server = HttpServer.create(
-                    new InetSocketAddress(Integer.parseInt(props.getProperty("server-port"))),
+                    new InetSocketAddress(Integer.parseInt(serverPort)),
                     10
             );
             server.createContext("/", exchange -> {
@@ -31,6 +32,7 @@ public class Main {
             });
             server.setExecutor(executor);
             server.start();
+            System.out.println("Server started on port "+serverPort);
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
