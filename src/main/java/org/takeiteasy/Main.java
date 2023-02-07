@@ -4,14 +4,23 @@ import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Main {
+    static final String APPLICATION_PROPERTIES = "application.properties";
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(10);
         try{
-            var server = HttpServer.create(new InetSocketAddress(8081), 10);
+            Properties props = new Properties();
+            props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(APPLICATION_PROPERTIES));
+            ExecutorService executor = Executors.newFixedThreadPool(
+                    Integer.parseInt(props.getProperty("thread-pool-size"))
+            );
+            var server = HttpServer.create(
+                    new InetSocketAddress(Integer.parseInt(props.getProperty("server-port"))),
+                    10
+            );
             server.createContext("/", exchange -> {
                 try {
                     var handler = new ServerContext(RequestMethod.valueOf(exchange.getRequestMethod()));
