@@ -12,5 +12,5 @@ Open a terminal and run following commands:
 # packaging
 mvn package
 # execution
-java -cp target/take-it-easy-server-1.0-SNAPSHOT.jar org.takeiteasy.Main
+java -jar target/take-it-easy-server-1.0-SNAPSHOT.jar
 ```
