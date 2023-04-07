@@ -1,4 +1,5 @@
 # Take It Easy HTTP Server
+
 A very simple multi thread HTTP server in Java
 
 ## Prerequisite
@@ -7,7 +8,9 @@ A very simple multi thread HTTP server in Java
 - MAVEN
 
 ## How to
+
 Open a terminal and run following commands:
+
 ```bash
 # packaging
 mvn package
