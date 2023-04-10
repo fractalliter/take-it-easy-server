@@ -1,7 +1,6 @@
 package org.takeiteasy.application;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 
 import java.io.IOException;
 import java.util.Properties;
