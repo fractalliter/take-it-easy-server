@@ -61,7 +61,7 @@ public class ApplicationImpl implements Application {
         }
     }
 
-    private Properties loadProperties() throws IOException {
+    public Properties loadProperties() throws IOException {
         Properties props = new Properties();
         props.load(
                 Thread.currentThread()
